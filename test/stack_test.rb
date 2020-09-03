@@ -3,7 +3,7 @@ require_relative 'test_helper'
 describe "Test Stack Implementation" do
   it "creates a Stack" do
     s = Stack.new
-    s.class.must_equal Stack
+    expect(s.class).must_equal Stack
   end
 
   it "pushes something onto a empty Stack" do
