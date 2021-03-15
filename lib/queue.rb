@@ -72,6 +72,12 @@ class Queue
     return @front == -1
   end
 
+  # Time Complexity: O(n), you have to check every element in the stack as defined by @front/back in order to
+  # add them to the string version of the return array. the return array converting to a string is also an O(n)
+  # operation, I think, but doesn't increase big O of the function and is just much cleaner to implement (unlike 
+  # delete in the BST)
+  # Space Complexity: O(n), creating a array whose size/num elements depends on num elements currently in 
+  # queue as defined by @front/@back
   def to_s
     return "[]" if empty?
     arr = []
