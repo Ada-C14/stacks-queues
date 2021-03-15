@@ -50,7 +50,7 @@ describe "Test Queue Implementation" do
     expect(q.empty?).must_equal true
   end
 
-  it "removes the right something (LIFO)" do
+  it "removes the right something (FIFO)" do
     
     q = Queue.new
     q.enqueue(5)
