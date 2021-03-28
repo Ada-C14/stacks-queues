@@ -1,7 +1,7 @@
 require_relative './stack.rb'
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n) - has to iterate through each char in the string input
+# Space Complexity: O(n) - the stack is directly correlated with the string.length
 def balanced(string)
   return true if string.empty?
 
@@ -28,5 +28,8 @@ end
 # Time Complexity: ?
 # Space Complexity: ?
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  stack = Stack.new
+  
+
+
 end

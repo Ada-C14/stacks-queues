@@ -8,6 +8,8 @@ class Stack
   end
 
   def pop
+    return nil if self.empty?
+    
     return @store.remove_first
   end
 
