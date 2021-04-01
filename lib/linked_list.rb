@@ -264,7 +264,7 @@ class LinkedList
       @tail = new_node
     end
 
-    def remove_last()
+    def remove_last
       value = @tail.data
       if @head == @tail
         @head = @tail = nil

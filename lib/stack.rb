@@ -8,7 +8,7 @@ class Stack
   end
 
   def pop
-    raise NotImplementedError, "Not yet implemented"
+    @list.remove_last
   end
 
   def empty?
