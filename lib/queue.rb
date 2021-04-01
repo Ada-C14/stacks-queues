@@ -33,7 +33,9 @@ class Queue
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    raise ArgumentError, 'Queue is empty' if @store.empty?
+
+    return @store[@head_ind]
   end
 
   def size

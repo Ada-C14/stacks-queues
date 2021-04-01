@@ -104,4 +104,20 @@ describe "Test Queue Implementation" do
 
     expect(q.to_s).must_equal('[40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210]')
   end
+
+  describe 'front method' do
+    it 'raises ArgumentError if try to access front for empty queue' do
+      q = Queue.new
+      expect{ q.front }.must_raise ArgumentError
+    end
+
+    it 'returns the first item in the queue without changing the queue' do
+      q = Queue.new
+      q.enqueue(5)
+      q.enqueue(4)
+      q.enqueue(3)
+      expect(q.front).must_equal 5
+      expect(q.to_s).must_equal('[5, 4, 3]')
+    end
+  end
 end
