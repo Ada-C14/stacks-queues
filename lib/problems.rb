@@ -1,4 +1,6 @@
-require_relative './stack.rb'
+require_relative './stack'
+require_relative './queue'
+require_relative './tree'
 require 'set'
 
 # Time Complexity: O(n)
@@ -7,17 +9,18 @@ require 'set'
 # >> At worst, storing half of the chars in the input string in stack
 #
 # PSEUDOCODE:
-# Different types of braces
-# We can use a stack to store the opening braces
-# Once we hit a closing brace, we can pop off the stack
+# >> Different types of braces can be expected in input
+# >> We can use a stack to store the opening braces
+# >> Once we hit a closing brace, we can pop off the stack
 # the popped item must be the same type of brace
 # otherwise, unbalanced
-# Can also be unbalanced if stack is not empty when finished iterating through input string
+# >> Can also be unbalanced if stack is not empty when finished iterating through input string
 
 OPENING_BRACES = Set['{', '[', '(']
 
 def balanced(string)
   return true if string.empty?
+
   seen_opening_braces = Stack.new
 
   string.each_char do |brace|
@@ -45,6 +48,8 @@ end
 # Assumptions:
 # >> input only contains valid numbers and operators
 # >> assume nums are integers
+# >> assume no dividing by 0 --
+# could throw an error if we encounter 0, but 0 could also be an invalid input converted to_i
 
 OPERATORS = Set['+', '-', '*', '/', '**']
 
@@ -85,3 +90,7 @@ def evaluate_postfix(postfix_expression)
     raise ArgumentError, 'invalid input'
   end
 end
+
+##########################################
+
+# BFS - Using Queue (see tree class)
