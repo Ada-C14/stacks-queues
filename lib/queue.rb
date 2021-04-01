@@ -2,7 +2,7 @@ class Queue
   def initialize
     @store = []
     @head_ind = @tail_ind = 0
-    @max_ind = 19
+    @max_ind = 19 # max size of 20 per README
   end
 
   def enqueue(element)
@@ -11,7 +11,7 @@ class Queue
     @store << element
     if @tail_ind == @max_ind
       @tail_ind = 0
-    else
+    elsif @store[@tail_ind + 1] # we want @tail_ind to remain at 0 when adding first element to queue
       @tail_ind += 1
     end
 
@@ -39,11 +39,15 @@ class Queue
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return 0 if @store.empty?
+
+    p @head_ind
+    p @tail_ind
+    return (@head_ind - @tail_ind).abs + 1
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @store[@head_ind].nil?
   end
 
   def to_s

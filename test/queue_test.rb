@@ -25,7 +25,7 @@ describe "Test Queue Implementation" do
 
   it "starts the Queue empty" do
     q = Queue.new
-    q.empty?.must_equal true
+    expect(q.empty?).must_equal true
   end
 
   it "a Queue is empty after removing all the elements" do
@@ -118,6 +118,21 @@ describe "Test Queue Implementation" do
       q.enqueue(3)
       expect(q.front).must_equal 5
       expect(q.to_s).must_equal('[5, 4, 3]')
+    end
+  end
+
+  describe 'size method' do
+    it 'returns 0 for an empty queue' do
+      q = Queue.new
+      expect(q.size).must_equal 0
+    end
+
+    it 'returns the size of a non-empty queue' do
+      q = Queue.new
+      q.enqueue(5)
+      q.enqueue(4)
+      q.enqueue(3)
+      expect(q.size).must_equal 3
     end
   end
 end
