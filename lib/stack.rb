@@ -12,7 +12,7 @@ class Stack
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @list.length.zero?
   end
 
   def to_s
