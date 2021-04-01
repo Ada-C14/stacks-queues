@@ -27,6 +27,10 @@ describe 'Test wave 3 problems' do
       expect(balanced('[]()')).must_equal true
     end
 
+    it 'also works with other non-brace characters in-between' do
+      expect(balanced('(a)[b]')).must_equal true
+    end
+
     # it "raises an ArgumentError if input includes a character that isn't a brace" do
     #   expect { balanced('[()]s') }.must_raise ArgumentError
     # end
