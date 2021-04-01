@@ -46,7 +46,6 @@ describe "Test Queue Implementation" do
   end
 
   it "removes the right something (LIFO)" do
-    
     q = Queue.new
     q.enqueue(5)
     q.enqueue(3)
@@ -57,7 +56,6 @@ describe "Test Queue Implementation" do
   end
 
   it "properly adjusts the size with enqueueing and dequeueing" do
-    
     q = Queue.new
     expect(q.empty?).must_equal true
     q.enqueue(-1)
