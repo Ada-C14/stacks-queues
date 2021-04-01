@@ -35,8 +35,11 @@ def balanced(string)
   return seen_opening_braces.empty?
 end
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n)
+# >> iterate through each character of input string
+# Space Complexity: O(1)
+# >> assuming a valid input, my storage stack should only ever store 2 items at a time
+# (an operator should come next)
 #
 # PSEUDOCODE:
 # Assumptions:
@@ -56,7 +59,7 @@ def eval_helper(first_num, second_num, operator)
   when '/'
     result = first_num / second_num
   when '**'
-    result = first_num ** second_num
+    result = first_num**second_num
   end
 
   return result
