@@ -29,8 +29,6 @@ def balanced(string)
       return false unless seen_opening_braces.pop == '{'
     elsif brace == ')'
       return false unless seen_opening_braces.pop == '('
-    else
-      raise ArgumentError, 'input includes a non-valid brace'
     end
   end
 
