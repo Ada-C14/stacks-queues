@@ -37,6 +37,48 @@ end
 
 # Time Complexity: ?
 # Space Complexity: ?
+#
+# PSEUDOCODE:
+# Assumptions:
+# >> input only contains valid numbers and operators
+# >> assume nums are integers
+
+OPERATORS = Set['+', '-', '*', '/', '**']
+
+def eval_helper(first_num, second_num, operator)
+  case operator
+  when '+'
+    result = first_num + second_num
+  when '-'
+    result = first_num - second_num
+  when '*'
+    result = first_num * second_num
+  when '/'
+    result = first_num / second_num
+  when '**'
+    result = first_num ** second_num
+  end
+
+  return result
+end
+
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  expression_stack = Stack.new
+  postfix_expression.each_char do |char|
+    if OPERATORS.include?(char)
+      second_num = expression_stack.pop
+      first_num = expression_stack.pop
+      result_num = eval_helper(first_num.to_i, second_num.to_i, char)
+      expression_stack.push(result_num)
+    else
+      expression_stack.push(char)
+    end
+  end
+
+  final = expression_stack.pop
+  if expression_stack.empty?
+    return final
+  else
+    raise ArgumentError, 'invalid input'
+  end
 end

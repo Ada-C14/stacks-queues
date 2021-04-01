@@ -41,8 +41,6 @@ class Queue
   def size
     return 0 if @store.empty?
 
-    p @head_ind
-    p @tail_ind
     return (@head_ind - @tail_ind).abs + 1
   end
 

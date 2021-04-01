@@ -8,6 +8,8 @@ class Stack
   end
 
   def pop
+    raise ArgumentError, 'Stack is empty' if @list.empty?
+
     @list.remove_last
   end
 

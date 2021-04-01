@@ -52,5 +52,9 @@ describe 'Test wave 3 problems' do
       expect(evaluate_postfix('35+6*')).must_equal 48
       expect(evaluate_postfix('62/5+')).must_equal 8
     end
+
+    it 'raises an Argument Error when postfix expression is incomplete by end of iteration' do
+      expect { evaluate_postfix('34+2*+') }.must_raise ArgumentError
+    end
   end
 end
