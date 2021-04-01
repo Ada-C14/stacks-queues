@@ -16,6 +16,6 @@ class Stack
   end
 
   def to_s
-    return @store.to_s
+    return @list.to_s
   end
 end

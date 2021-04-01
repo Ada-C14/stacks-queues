@@ -10,14 +10,12 @@ describe "Test Queue Implementation" do
   end
 
   it "adds something to an empty Queue" do
-    
     q = Queue.new
     q.enqueue(10)
     expect(q.to_s).must_equal "[10]"
   end
 
   it "adds multiple somethings to a Queue" do
-    
     q = Queue.new
     q.enqueue(10)
     q.enqueue(20)
@@ -26,13 +24,11 @@ describe "Test Queue Implementation" do
   end
 
   it "starts the Queue empty" do
-    
     q = Queue.new
     q.empty?.must_equal true
   end
 
   it "a Queue is empty after removing all the elements" do
-    
     q = Queue.new
     q.enqueue(5)
     q.enqueue(6)
@@ -42,7 +38,6 @@ describe "Test Queue Implementation" do
   end
 
   it "can remove something from the Queue" do
-    
     q = Queue.new
     q.enqueue(5)
     removed = q.dequeue

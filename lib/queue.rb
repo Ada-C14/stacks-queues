@@ -1,12 +1,11 @@
 class Queue
-
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = []
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    @store << element
+    p @store
   end
 
   def dequeue
