@@ -177,7 +177,7 @@ class Tree
 
   ##########################################
 
-  # BFS - Using Queue (see tree class)
+  # BFS - Using Queue
 
   # Time Complexity: O(n)
   # >> may need to traverse all nodes in tree
@@ -193,6 +193,7 @@ class Tree
   # input is a node key (treeNode class from previous week has key and value)
   # return nil if not found or tree is empty
   # return value if it is found
+  # using queue class created for this assignment
 
   def bfs_queue(search_key)
     return nil if @root.nil?
@@ -203,6 +204,7 @@ class Tree
 
     while search_nodes_queue.size > 0
       check_node = search_nodes_queue.dequeue
+
       if check_node.key == search_key
         return check_node.value
       else

@@ -19,7 +19,7 @@ class Queue
   end
 
   def dequeue
-    raise ArgumentError, 'Queue is empty' if @store.empty?
+    raise ArgumentError, 'Queue is empty' if empty?
 
     removed = @store[@head_ind]
     @store[@head_ind] = nil
@@ -33,13 +33,13 @@ class Queue
   end
 
   def front
-    raise ArgumentError, 'Queue is empty' if @store.empty?
+    raise ArgumentError, 'Queue is empty' if empty?
 
     return @store[@head_ind]
   end
 
   def size
-    return 0 if @store.empty?
+    return 0 if empty?
 
     return (@head_ind - @tail_ind).abs + 1
   end
