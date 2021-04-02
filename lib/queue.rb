@@ -1,30 +1,55 @@
 class Queue
-
+  MAX_SIZE = 20
+  
   def initialize
-    @store = LinkedList.new()
+    @store = Array.new(MAX_SIZE)
+    @front = @back = -1
   end
 
   def enqueue(element)
-    @store.add_last(element)
+    if (@front == 0 && @back == MAX_SIZE - 1) || (@back == (@front - 1) % MAX_SIZE - 1)
+      raise ArgumentError.new("The queue is full")
+    elsif @front == -1 && @back == -1
+      @front = 0
+      @back = 0
+    elsif @back == MAX_SIZE 
+      @back = 0
+    else
+      @back += 1
+    end
+    @store[@back] = element
   end
 
   def dequeue
-    @store.remove_first
+    raise ArgumentError, "Queue is empty" if @store.empty?
+
+    result = @store[@front] 
+    @store[@front] = nil
+    if @front == @back
+      @front = @back = -1
+    elsif @front == MAX_SIZE - 1
+      @front = 0
+    else
+      @front += 1
+    end
+    return result
   end
 
   def front
-    @store.get_at_index(0)
+    @store[@front]
   end
 
   def size
-    @store.size
+    return MAX_SIZE if @front == @back % MAX_SIZE
+
+    return @back > @front ? @back + 1 : MAX_SIZE - @front + @back
   end
 
   def empty?
-    @store.empty? ? true : false
+    return @front == @back && @front == -1 ? true : false
   end
 
   def to_s
-    return @store.to_s
+    return @store.select { |i| !i.nil? }.to_s
   end
 end

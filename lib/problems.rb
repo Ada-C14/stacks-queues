@@ -31,7 +31,7 @@ def balanced(string)
 end
 
 # Time Complexity: O(n)
-# Space Complexity: ?
+# Space Complexity: O(n)
 def evaluate_postfix(postfix_expression)
   stack = Stack.new()
   operators = {
@@ -43,12 +43,12 @@ def evaluate_postfix(postfix_expression)
 
   postfix_expression.each_char do |c|
     if operators[c]
-      y = stack.pop.to_i
-      x = stack.pop.to_i
+      y = stack.pop
+      x = stack.pop
       result = x.method(c).(y)
       stack.push(result)
     else
-      stack.push(c)
+      stack.push(c.to_i)
     end
   end
   return stack.pop
