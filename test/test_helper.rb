@@ -10,4 +10,4 @@ require_relative "../lib/linked_list.rb"
 require_relative "../lib/queue.rb"
 require_relative "../lib/stack.rb"
 # Extra exercises
-# require_relative "../lib/problems.rb"
+require_relative "../lib/problems.rb"
