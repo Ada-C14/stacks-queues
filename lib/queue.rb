@@ -1,6 +1,6 @@
 class Queue
 
-  MAX_SIZE = 20
+  # MAX_SIZE = 20
   # attr_reader :front, :back
 
   def initialize
@@ -71,9 +71,9 @@ class Queue
 
     result = @store[@front] 
     @store[@front] = nil
-    if @front == @back
+    if @front == @back #why - queue is empty?
       @front = @back = -1
-    elsif @front == MAX_SIZE - 1
+    elsif @front == @store.length - 1 # why - front needs to wrap around?
       @front = 0
     else
       @front += 1
@@ -159,3 +159,4 @@ end
 # p q.back   #1 -> -1
 
 # q.enqueue(10)
+# p q.to_s
