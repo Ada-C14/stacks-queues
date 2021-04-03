@@ -108,7 +108,7 @@ describe "Test Queue Implementation" do
     q.enqueue(200)
     q.enqueue(210)
     q.dequeue
-    p q
+    # p q
 
     expect(q.to_s).must_equal('[40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210]')
   end
