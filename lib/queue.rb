@@ -1,11 +1,11 @@
 class Queue
 
   MAX_SIZE = 20
-  attr_reader :front, :back
+  # attr_reader :front, :back
 
   def initialize
-    # @store = Array.new(20)
-    @store = Array.new(5)
+    @store = Array.new(20)
+    # @store = Array.new(5)
     # @front = @back = nil
     @front = @back = -1
   end
@@ -19,7 +19,8 @@ class Queue
 
     if @front == -1 && @back == -1
       @front = @back = 0
-    elsif @back % @store.length == @front
+    # elsif @back == @front 
+    elsif (@back + 1) % @store.length == @front
       raise ArgumentError.new("Queue is full")
     elsif @back == @store.length
       @back = 0
@@ -100,58 +101,61 @@ class Queue
 end
 
 
-q = Queue.new
-q.enqueue(10)
-q.enqueue(20)
-q.enqueue(30)
-q.enqueue(40)
-q.enqueue(50)
+# q = Queue.new
+# q.enqueue(10)
+# p q.back 
+# q.enqueue(20)
+# p q.back 
+# q.enqueue(30)
+# p q.back 
+# q.enqueue(40)
+# q.enqueue(50)
 
-# [10, 20, 30, 40, 50]
-p q.to_s
-p q.front #0
-p q.back  #5 -> 4
+# # [10, 20, 30, 40, 50]
+# p q.to_s
+# p q.front #0
+# p q.back  #5 -> 4
 
-q.dequeue
-# [nil, 20, 30, 40, 50]
-p q.to_s
-p q.front #1
-p q.back  #5 -> 4
+# q.dequeue
+# # [nil, 20, 30, 40, 50]
+# p q.to_s
+# p q.front #1
+# p q.back  #5 -> 4
 
-q.enqueue(60)
-# [60, 20, 30, 40, 50] -> [20, 30, 40, 50, 60]
-p q.to_s
-p q.front #1
-p q.back  #1  -> 5
+# q.enqueue(60)
+# # [60, 20, 30, 40, 50] -> [20, 30, 40, 50, 60]
+# p q.to_s
+# p q.front #1
+# p q.back  #1  -> 5
 
-q.dequeue
-# [60, nil, 30, 40, 50]
-p q.to_s
-p q.front  #2
-p q.back   #1 -> 5
+# q.dequeue
+# # [60, nil, 30, 40, 50]
+# p q.to_s
+# p q.front  #2
+# p q.back   #1 -> 5
 
-q.dequeue
-# [60, nil, nil, 40, 50]
-p q.to_s
-p q.front  #3
-p q.back   #1 -> 5
+# q.dequeue
+# # [60, nil, nil, 40, 50]
+# p q.to_s
+# p q.front  #3
+# p q.back   #1 -> 5
 
-q.dequeue
-# [60, nil, nil, nil, 50]
-p q.to_s
-p q.front  #4
-p q.back   #1 -> 5
+# q.dequeue
+# # [60, nil, nil, nil, 50]
+# p q.to_s
+# p q.front  #4
+# p q.back   #1 -> 5
 
-q.dequeue
-# [60, nil, nil, nil, nil]
-p q.to_s
-p q.front  #0 -> 5
-p q.back   #1
+# q.dequeue
+# # [60, nil, nil, nil, nil]
+# p q.to_s
+# p q.front  #0 -> 5
+# p q.back   #1
 
-q.dequeue
-# [nil, nil, nil, nil, nil]
-p q.to_s
-p q.front  #1 -> -1
-p q.back   #1 -> -1
+# q.dequeue
+# # [nil, nil, nil, nil, nil]
+# p q.to_s
+# p q.front  #1 -> -1
+# p q.back   #1 -> -1
 
-q.enqueue(10)
+# q.enqueue(10)
