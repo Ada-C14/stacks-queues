@@ -13,11 +13,11 @@ class Queue
     return @list.remove_first
   end
 
-  def front
-  end
+  # def front
+  # end
 
-  def size
-  end
+  # def size
+  # end
 
   def empty?
     return @list.empty?
