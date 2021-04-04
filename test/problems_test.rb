@@ -33,7 +33,7 @@ describe "Test wave 3 problems" do
     end
   end
 
-  xdescribe "postfix" do
+  describe "postfix" do
     it "can add a 2 numbers together" do
       
       expect(evaluate_postfix("34+")).must_equal 7

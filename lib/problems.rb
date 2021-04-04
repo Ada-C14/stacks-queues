@@ -19,8 +19,24 @@ def balanced(string)
 end
 
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n)
+# Space Complexity: O(m)
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  operations = {"*" => true, "+" => true, "/" => true, "-" => true}    #space: O(m)
+  stack = []
+  result = ""
+
+  postfix_expression.each_char do |char|    # time: O(n)
+    if operations[char]                     # time: O(1)
+      num2 = stack.pop.to_i                 # time: O(1)
+      num1 = stack.pop.to_i                 # time: O(1)
+      result = num1.method(char).(num2)
+      stack.push(result)                    # time: O(1)
+    else
+      stack.push(char)                      # time: O(1)
+    end
+  end
+
+  return result
+
 end
