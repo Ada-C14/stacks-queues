@@ -1,31 +1,61 @@
 class Queue
+  BUFFER_SIZE = 20
 
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @queue = Array.new(BUFFER_SIZE)
+    @front = -1
+    @rear = -1
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    if @front == 0 && @rear == BUFFER_SIZE - 1 || @rear == (@front - 1) % (BUFFER_SIZE - 1)
+      raise ArgumentError.new("The queue is full!")
+    elsif @front == -1 #queue is empty
+      @front = 0
+      @rear = 0
+    elsif @rear == BUFFER_SIZE - 1 && @front != 0 #rear needs to wrap around
+      @rear = 0
+    else
+      @rear += 1
+    end
+    @queue[@rear] = element
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    return nil if @queue.empty?
+    raise ArgumentError.new("Nothing to dequeue") if @front == -1
+    data = @queue[@front]
+    @queue[@front] = nil
+
+    if @front == @rear
+      @front = -1
+      @rear = -1
+    elsif @front == BUFFER_SIZE - 1
+      @front = 0
+    else
+      @front += 1
+    end
+    return data
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @queue[@front]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    @front == -1 ? 0 : (@front - @rear).abs + 1
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    @front == -1
   end
 
   def to_s
-    return @store.to_s
+    result = []
+    20.times do |i|
+      index = (i + @front) % BUFFER_SIZE
+      result << @queue[index] if @queue[index]
+    end
+    return result.to_s
   end
 end
