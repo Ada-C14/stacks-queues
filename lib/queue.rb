@@ -43,10 +43,11 @@ class Queue
   end
 
   def size
-    @front == -1 ? 0 : (@front - @rear).abs + 1
+    return 0 if @front == -1
+    return @front < @rear ? @rear - @front + 1 : BUFFER_SIZE - @front + @rear       
   end
 
-  def empty?
+  def empty?      
     @front == -1
   end
 
