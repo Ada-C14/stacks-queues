@@ -104,6 +104,64 @@ describe "Test Queue Implementation" do
     expect(q.to_s).must_equal('[40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210]')
   end
 
+  describe 'enqueue' do
+    it 'raises ArgumentError if try to enqueue while queue is full: head is at 0 and tail is at 19' do
+      q = Queue.new
+      q.enqueue(10)
+      q.enqueue(20)
+      q.enqueue(30)
+      q.enqueue(40)
+      q.enqueue(50)
+      q.enqueue(60)
+      q.enqueue(70)
+      q.enqueue(80)
+      q.enqueue(90)
+      q.enqueue(100)
+      q.enqueue(110)
+      q.enqueue(120)
+      q.enqueue(130)
+      q.enqueue(140)
+      q.enqueue(150)
+      q.enqueue(160)
+      q.enqueue(170)
+      q.enqueue(180)
+      q.enqueue(190)
+      q.enqueue(200)
+      expect(q.head_ind).must_equal 0
+      expect(q.tail_ind).must_equal 19
+      expect { q.enqueue(210) }.must_raise ArgumentError
+    end
+
+    it 'raises ArgumentError if try to enqueue while queue is full: queue is wrapped around' do
+      q = Queue.new
+      q.enqueue(10)
+      q.enqueue(20)
+      q.enqueue(30)
+      q.enqueue(40)
+      q.enqueue(50)
+      q.enqueue(60)
+      q.enqueue(70)
+      q.enqueue(80)
+      q.enqueue(90)
+      q.enqueue(100)
+      q.enqueue(110)
+      q.enqueue(120)
+      q.enqueue(130)
+      q.enqueue(140)
+      q.enqueue(150)
+      q.enqueue(160)
+      q.enqueue(170)
+      q.enqueue(180)
+      q.enqueue(190)
+      q.enqueue(200)
+      q.dequeue
+      q.enqueue(200)
+      expect(q.head_ind).must_equal 1
+      expect(q.tail_ind).must_equal 0
+      expect { q.enqueue(210) }.must_raise ArgumentError
+    end
+  end
+
   describe 'front method' do
     it 'raises ArgumentError if try to access front for empty queue' do
       q = Queue.new

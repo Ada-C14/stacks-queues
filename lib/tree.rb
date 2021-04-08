@@ -202,7 +202,7 @@ class Tree
     search_nodes_queue = Queue.new
     search_nodes_queue.enqueue(@root)
 
-    while search_nodes_queue.size > 0
+    until search_nodes_queue.empty?
       check_node = search_nodes_queue.dequeue
 
       if check_node.key == search_key
