@@ -1,7 +1,7 @@
 require_relative './stack.rb'
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def balanced(string)
   open_chars = Stack.new
 
@@ -11,7 +11,7 @@ def balanced(string)
     '(' => ')'
   }
 
-  is_closed ={
+  is_closed = {
     '}' => '{',
     ']' => '[',
     ')' => '('
@@ -28,8 +28,36 @@ def balanced(string)
   return open_chars.empty?
 end
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  operands = []
+  operations = {
+    '+' => true,
+    '-' => true, 
+    '*' => true, 
+    '/' => true
+  }
+
+  postfix_expression.each_char do |current|
+    if !operations[current]
+      operands << current.to_i
+    elsif operands.length >= 2
+      operand_2 = operands.pop
+      operand_1 = operands.pop
+
+      case current
+      when '+'
+        operands << operand_1 + operand_2
+      when '-'
+        operands << operand_1 - operand_2
+      when '*'
+        operands << operand_1 * operand_2 
+      when '/'
+        operands << operand_1 / operand_2
+      end
+    end
+  end
+
+  return operands.first
 end
