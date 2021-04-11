@@ -18,4 +18,9 @@ class Stack
   def to_s
     return @store.to_s
   end
+
+  # for evaluate_postfix to get the result from first node
+  def get_first
+    return @store.get_first
+  end
 end
