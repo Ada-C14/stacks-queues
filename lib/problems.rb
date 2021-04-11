@@ -18,8 +18,22 @@ def balanced(string)
   return result.empty?
 end
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n), it has to run thru the whole postfix expression to do the calculation, so it's O(n).
+# Space Complexity: O(n), the worst case scenario is to store all the chars in the string to the linked list, so it's O(n).
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  operators = {"+" => true, "-" => true, "*" => true, "/" => true}
+  result = Stack.new
+
+  postfix_expression.each_char do |char|
+    if operators[char]
+      num2 = result.pop
+      num1 = result.pop
+      calculation = num1.send(char, num2)
+      result.push(calculation)
+    else
+      result.push(char.to_i)
+    end
+  end
+
+  return result.get_first
 end
