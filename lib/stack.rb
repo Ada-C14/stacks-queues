@@ -26,40 +26,40 @@ end
 
 #using array
 
-class Stack
-  SIZE = 20
+# class Stack
+#   SIZE = 20
 
-  def initialize
-    @store = Array.new(SIZE)
-    @head = -1
-  end
+#   def initialize
+#     @store = Array.new(SIZE)
+#     @head = -1
+#   end
 
-  def push(element)
-    if @head < @store.length - 1
-      @head += 1
-      @store[@head] = element
-    else
-      # raise exception
-    end
-  end
+#   def push(element)
+#     if @head < @store.length - 1
+#       @head += 1
+#       @store[@head] = element
+#     else
+#       # raise exception
+#     end
+#   end
 
-  def pop
-    if @head >= 0
-      element = @store[@head]
-      @head -= 1
-      return element
-    else
-      # raise exception
-    end
-  end
+#   def pop
+#     if @head >= 0
+#       element = @store[@head]
+#       @head -= 1
+#       return element
+#     else
+#       # raise exception
+#     end
+#   end
 
-  def empty?
-    return @head < 0 
-  end
+#   def empty?
+#     return @head < 0 
+#   end
 
-  def to_s
-    return @store.to_s
-  end
-end
+#   def to_s
+#     return @store.to_s
+#   end
+# end
 
 
