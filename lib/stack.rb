@@ -4,17 +4,17 @@ class Stack
   end
 
   def push(element)
-    @store.add_first(item)
+    @store.add_first(element)
   end
 
   def pop
     return nil if self.empty?
-    item = list.remove_first
-    return item
+    element = @store.remove_first
+    return element
   end
 
   def empty?
-    return @list.empty?
+    return @store.empty?
   end
 
   def to_s
