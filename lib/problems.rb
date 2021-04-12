@@ -31,8 +31,8 @@ def balanced(string)
   return stack.empty?
 end
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def evaluate_postfix(postfix_expression)
   operators = ["+","-", "*", "/"]
   stack = Stack.new
