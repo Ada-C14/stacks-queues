@@ -33,17 +33,29 @@ end
 
 # Time Complexity: ?
 # Space Complexity: ?
-# def evaluate_postfix(postfix_expression)
-#   operators = ["+","-", "*", "/"]
-#   stack = Stack.new
-#   raise ArgumentError if postfix_expression == ""
-#   i = 0
-#   while i < postfix_expression.length
-#     if operators.include?(postfix_expression[i])
-#       temp_result = stack.pop postfix_expression[i] stack.pop
-#     else
-#       stack.push(postfix_expression[i])
-#     end
-#     i += 1
-#   end 
-# end
+def evaluate_postfix(postfix_expression)
+  operators = ["+","-", "*", "/"]
+  stack = Stack.new
+  raise ArgumentError if postfix_expression == ""
+  i = 0
+  while i < postfix_expression.length
+    if operators.include?(postfix_expression[i])
+      operand2 = stack.pop.to_i
+      operand1 = stack.pop.to_i
+      if postfix_expression[i] == "+"
+        temp_result = operand1 + operand2
+      elsif postfix_expression[i] == "-"
+        temp_result = operand1 - operand2
+      elsif postfix_expression[i] == "*"
+        temp_result = operand1 * operand2
+      elsif postfix_expression[i] == "/"
+        temp_result = operand1 / operand2
+      end
+      stack.push(temp_result)
+    else
+      stack.push(postfix_expression[i])
+    end
+    i += 1
+  end 
+  return stack.pop
+end
