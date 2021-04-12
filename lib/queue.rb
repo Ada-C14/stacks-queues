@@ -19,6 +19,7 @@ class Queue
       raise IndexError, "Array is empty"
     else
       dequeued_element = @store[@front]
+      @store[@front] = nil
       @front = (@front + 1) % self.size
       return dequeued_element
     end
@@ -41,9 +42,14 @@ class Queue
   end
 
   def to_s
-    p "queue is #{@store[@front..@back-1]}"
-    p "front is #{@front}"
-    p "back is #{@back}"
-    return @store[@front..@back-1].to_s
+    if @front <= @back
+      return @store[@front..@back-1].to_s
+    else
+      string = "["
+      (@front...self.size).each { |i| string << "#{@store[i]}, " }
+      (0...@back-1).each { |i| string << "#{@store[i]}, " }
+      string << "#{@store[@back - 1]}]"
+      return string
+    end
   end
 end
