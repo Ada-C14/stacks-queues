@@ -42,14 +42,14 @@ class Queue
   end
 
   def to_s
-    if @front <= @back
-      return @store[@front..@back-1].to_s
-    else
-      string = "["
-      (@front...self.size).each { |i| string << "#{@store[i]}, " }
-      (0...@back-1).each { |i| string << "#{@store[i]}, " }
-      string << "#{@store[@back - 1]}]"
-      return string
+    string = "["
+    i = @front
+    until i == @back - 1
+      string << "#{@store[i]}, "
+      i = (i + 1) % self.size
     end
+
+    string << "#{@store[@back - 1]}]"
+    return string
   end
 end
