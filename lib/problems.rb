@@ -1,7 +1,7 @@
 require_relative './stack.rb'
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n) - where n is the number of characters in the string
+# Space Complexity: O(n) - worse case, all characters are openers and we push them all into the stack. 
 def balanced(string)
   brackets = {
     "(" => ")",
@@ -35,8 +35,29 @@ def balanced(string)
 
 end
 
-# Time Complexity: ?
-# Space Complexity: ?
+# Time Complexity: O(n) - where n is the number of characters in the expression 
+# Space Complexity: O(n) - We're using a stack to store values. 
 def evaluate_postfix(postfix_expression)
-  raise NotImplementedError, "Not implemented yet"
+  stack = []
+  postfix_expression.each_char do |element|
+    if element == element.to_i.to_s
+      stack.push(element.to_i)
+    else
+      b = stack.pop
+      a = stack.pop 
+      case element
+      when "+"
+        stack.push(a + b)
+      when "-"
+        stack.push(a - b)
+      when "*"
+        stack.push(a * b)
+      when "/"
+        stack.push(a / b)
+      end
+    end
+  end
+  return stack.pop
 end
+
+
