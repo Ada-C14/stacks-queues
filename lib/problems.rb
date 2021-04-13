@@ -7,7 +7,7 @@ def balanced(string)
   hash_table = {"}" => "{", "]" => "[", ")" => "("}  # space: O(m)? maybe O(1) bc size of this doesnt grow with input?
   stack = Stack.new
 
-  string.each_char do |char|                         # time: O(n)
+  string.each_char do |char|                    # time: O(n)
     if hash_table.has_value?(char)              # time: O(m)?
       stack.push(char)
     else
@@ -22,7 +22,8 @@ end
 # Time Complexity: O(n)
 # Space Complexity: O(m), but also potentially O(1)
 def evaluate_postfix(postfix_expression)
-  operations = {"*" => true, "+" => true, "/" => true, "-" => true}    #space: O(m), maybe O(1) bc size of this doesnt grow with input?
+  # assumes these are only valid operations
+  operations = {"*" => true, "+" => true, "/" => true, "-" => true}    # space: O(m), maybe O(1) bc size of this doesnt grow with input?
   stack = Stack.new     
   result = ""
 

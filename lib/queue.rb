@@ -1,9 +1,6 @@
 class Queue
 
-  attr_reader :front, :back
-
   SIZE = 20
-  # SIZE = 5
 
   def initialize
     @store = Array.new(SIZE)
@@ -11,22 +8,11 @@ class Queue
   end
 
   def enqueue(element)
-    p "back is #{@back}"
-    # p "length #{@store.length}"
-    # 1. set front and back to 0 if nil
-    # 2. queue is full if front == back
-    # 3. need to wrap back to 0 if at the end and there's space
-    # 4. move back += 1
 
     if @front == -1 && @back == -1
       @front = @back = 0
     elsif (@back + 1) % SIZE == @front
       raise ArgumentError.new("Queue is full")
-      # passes if get rid of -1
-      # but that's confusing to me
-      # because back should never get to value of size (if indexing starting at 0)
-      # like when back is size - 1, you're at the last element, and should then circle to beginning?
-      # i think the question is whether or not you count nil towards array size?
     elsif @back == SIZE - 1
       @back = 0
     else
@@ -34,55 +20,16 @@ class Queue
     end
 
     @store[@back] = element
-
-    # if (@back + 1) % @store.length == @front
-    #   raise ArgumentError.new("The queue is full")
-    # elsif @front == -1 && @back == -1
-    #   @front = 0
-    #   @back = 0
-    # elsif @back == MAX_SIZE - 1 && front != 0 
-    #   @back = 0
-    # else
-    #   @back += 1
-    # end
-    # @store[@back] = element
-
-
-
   end
 
   def dequeue
-
-    # if @front == -1
-    #   raise ArgumentError.new("Queue is empty")
-    # end
-    
-    # data = @store[@front]
-    # # overwrite the element being deleted
-    # @store[@front] = nil
-  
-    # # if the queue is now empty
-    # if (@front == @back)
-    #   @front = -1
-    #   @back = -1
-    # elsif @front == @store.length - 1
-    #   #  // if front needs to wrap around
-    #   @front = 0
-    # else
-    #   @front = @front + 1
-    # end
-  
-    # return data
-
-
-
     raise ArgumentError, "Queue is empty" if @store.empty?
 
     result = @store[@front] 
     @store[@front] = nil
-    if @front == @back #why - queue is empty?
+    if @front == @back
       @front = @back = -1
-    elsif @front == SIZE - 1 # why - front needs to wrap around?
+    elsif @front == SIZE - 1
       @front = 0
     else
       @front += 1
@@ -90,12 +37,12 @@ class Queue
     return result
   end
 
-  # def front
-  #   raise NotImplementedError, "Not yet implemented"
-  # end
+  def front
+    return @store[@front]
+  end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return @store.select{|x| !x.nil?}.length
   end
 
   def empty?
@@ -103,134 +50,13 @@ class Queue
   end
 
   def to_s
-    # return @store.to_s
-    return @store.select{|x| !x.nil?}.to_s
+    queue = []
+    20.times do |i|
+      index = (i + @front) % SIZE
+      queue.push(@store[index]) if @store[index]
+    end
+
+    return queue.to_s
   end
 
-
 end
-
-
-q = Queue.new
-q.enqueue(10)
-p q.to_s
-p q.back 
-q.enqueue(20)
-p q.to_s
-p q.back 
-q.enqueue(30)
-p q.to_s
-p q.back 
-q.dequeue
-q.dequeue
-q.enqueue(40)
-p q.to_s
-q.enqueue(50)
-p q.to_s
-p q.back
-
-q.enqueue(60)
-p q.to_s
-p q.back
-
-# q.dequeue
-# # [nil, 20, 30, 40, 50]
-# p q.to_s
-# p q.front #1
-# p q.back  #5 -> 4
-
-# q.enqueue(60)
-# # [60, 20, 30, 40, 50] -> [20, 30, 40, 50, 60]
-# p q.to_s
-# p q.front #1
-# p q.back  #1  -> 5
-
-# # q.enqueue(100) # - fails, so size is 6 with nil
-# # p q.to_s
-# # p q.front 
-# # p q.back  
-
-# q.dequeue
-# # [60, nil, 30, 40, 50]
-# p q.to_s
-# p q.front  #2
-# p q.back   #1 -> 5
-
-# q.enqueue(100)
-# p q.to_s
-# p q.front 
-# p q.back  
-
-# q.enqueue(100) # - fails, so size is 6 with nil
-# p q.to_s
-# p q.front 
-# p q.back  
-
-# q.dequeue
-# # [60, nil, nil, 40, 50]
-# p q.to_s
-# p q.front  #3
-# p q.back   #1 -> 5
-
-# q.dequeue
-# # [60, nil, nil, nil, 50]
-# p q.to_s
-# p q.front  #4
-# p q.back   #1 -> 5
-
-# q.enqueue(70)
-# # [60, 20, 30, 40, 50] -> [20, 30, 40, 50, 60]
-# p q.to_s
-# p q.front # 4
-# p q.back  # 6
-
-# q.enqueue(80)
-# # [60, 20, 30, 40, 50] -> [20, 30, 40, 50, 60]
-# p q.to_s
-# p q.front # 4
-# p q.back  # 7
-
-# q.enqueue(90)
-# # [60, 20, 30, 40, 50] -> [20, 30, 40, 50, 60]
-# p q.to_s
-# p q.front # 4
-# p q.back  # 6
-
-# q.dequeue
-# # [60, nil, nil, nil, nil]
-# p q.to_s
-# p q.front  #0 -> 5
-# p q.back   #1
-
-# q.dequeue
-# # [nil, nil, nil, nil, nil]
-# p q.to_s
-# p q.front  #1 -> -1
-# p q.back   #1 -> -1
-
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
-# q.enqueue(10)
-# p q.to_s
