@@ -1,7 +1,9 @@
 class Queue
 
+  ARRAY_SIZE = 20
+
   def initialize
-    @store = Array.new(20)
+    @store = Array.new(ARRAY_SIZE)
     @front = @back = 0
   end
 
@@ -10,7 +12,7 @@ class Queue
       raise NoMemoryError, "Array is full"
     else
       @store[@back] = element
-      @back = (@back + 1) % self.size
+      @back = (@back + 1) % ARRAY_SIZE
     end
   end
 
@@ -20,7 +22,7 @@ class Queue
     else
       dequeued_element = @store[@front]
       @store[@front] = nil
-      @front = (@front + 1) % self.size
+      @front = (@front + 1) % ARRAY_SIZE
       return dequeued_element
     end
   end
@@ -30,7 +32,7 @@ class Queue
   end
 
   def size
-    @front < @back ? return @back - @front : return @store.length + @back - @front
+    return @front < @back ? @back - @front : @store.length + @back - @front
   end
 
   def empty?
@@ -38,7 +40,7 @@ class Queue
   end
 
   def full?
-    return @front == (@back + 1) % self.size
+    return @front == (@back + 1) % ARRAY_SIZE
   end
 
   def to_s
@@ -46,7 +48,7 @@ class Queue
     i = @front
     until i == @back - 1
       string << "#{@store[i]}, "
-      i = (i + 1) % self.size
+      i = (i + 1) % ARRAY_SIZE
     end
 
     string << "#{@store[@back - 1]}]"
