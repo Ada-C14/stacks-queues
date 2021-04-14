@@ -1,8 +1,9 @@
 require_relative 'test_helper'
+require_relative '../lib/problems'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe "Test wave 3 problems" do
+describe "Test wave 3 problems" do
   describe "balanced" do
     it "Given balanced strings it should return true" do
       
