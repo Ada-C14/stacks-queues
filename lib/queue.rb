@@ -30,7 +30,7 @@ class Queue
   end
 
   def size
-    return @store.length
+    @front < @back ? return @back - @front : return @store.length + @back - @front
   end
 
   def empty?
