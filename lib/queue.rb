@@ -1,5 +1,4 @@
 class Queue
-
   def initialize
     @store = Array.new(10)
     @front = @back = 0
@@ -7,9 +6,9 @@ class Queue
 
   def enqueue(element)
     # If circular buffer is full, make a new, bigger array
-    if @front == (@back + 1) % size
+    if self.full?
       old_queue_size = @store.length
-      new_store = Array.new(old_queue_size + 10)
+      new_store = Array.new(old_queue_size * 2)
 
       new_store_back = 0
       until @front == @back
@@ -23,7 +22,7 @@ class Queue
     end
 
     @store[@back] = element
-    @back = (@back + 1) % size
+    @back = (@back + 1) % @store.length
   end
 
   def dequeue
@@ -35,7 +34,10 @@ class Queue
     element = @store[@front]
 
     @store[@front] = nil
-    @front = (@front + 1) % size
+
+    buffer_size = @store.length
+
+    @front = (@front + 1) % buffer_size
 
     return element
   end
@@ -53,27 +55,40 @@ class Queue
   end
 
   def size
-    return @store.length
+    buffer_size = @store.length
+
+    if @front > @back
+      return buffer_size - (@front - @back)
+    else
+      return @back - @front
+    end
   end
 
   def empty?
     return @back == @front
   end
 
+  def full?
+    buffer_size = @store.length
+    return @front == (@back + 1) % buffer_size
+  end
+
   def to_s
     # return @store.to_s
 
-    string = "["
+    buffer_size = @store.length
 
-    @store.each do |element|
-      if element
-        string << "#{element}, "
-      end
+    string = "["
+    
+    size.times do |i|
+      element = @store[(@front + i) % buffer_size]
+      string << "#{element}, "
     end
 
     string.slice!(-2,2)
     string << "]"
 
+    puts string
     return string
   end
 end
