@@ -1,19 +1,21 @@
+require_relative './linked_list.rb'
+
 class Stack
   def initialize
-    # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = LinkedList.new
+    @head = nil
   end
 
   def push(element)
-    raise NotImplementedError, "Not yet implemented"
+    @store.add_first(element)
   end
 
   def pop
-    raise NotImplementedError, "Not yet implemented"
+    @store.remove_first
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @head.nil?
   end
 
   def to_s
