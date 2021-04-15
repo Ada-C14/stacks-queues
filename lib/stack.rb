@@ -26,11 +26,7 @@ class Stack
   end
 
   def empty?
-    if @head.nil?
-      return true
-    else
-      return false
-    end
+    return @head.nil?
   end
 
   def to_s
