@@ -73,7 +73,7 @@ describe "Test Queue Implementation" do
     expect(q.empty?).must_equal true
   end
 
-  it "returns the front element in the Queue" do
+  it "returns the element in the Queue" do
     q = Queue.new
     q.enqueue(40)
     q.enqueue(22)

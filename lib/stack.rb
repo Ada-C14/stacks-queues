@@ -19,10 +19,10 @@ class Stack
   def pop
     raise ArgumentError, "Empty" if self.empty?
 
-      value = @head.data
-      @head = @head.next
-      @head.previous = nil unless @head.nil?
-      return value
+    value = @head.data
+    @head = @head.next
+    @head.previous = nil unless @head.nil?
+    return value
   end
 
   def empty?
