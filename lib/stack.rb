@@ -2,27 +2,16 @@ require_relative './linked_list.rb'
 
 class Stack
   def initialize
+    @store = LinkedList.new
     @head = nil
   end
 
   def push(element)
-    new_node = Node.new(element)
-    new_node.next = @head
-
-    @head.previous = new_node unless @head.nil?
-    @head = new_node
-    if @tail.nil?
-      @tail = @head
-    end
+    @store.add_first(element)
   end
 
   def pop
-    raise ArgumentError, "Empty" if self.empty?
-
-    value = @head.data
-    @head = @head.next
-    @head.previous = nil unless @head.nil?
-    return value
+    @store.remove_first
   end
 
   def empty?
