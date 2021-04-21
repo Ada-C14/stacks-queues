@@ -41,7 +41,11 @@ class Queue
   end
 
   def empty?
-    return @front.nil? || @front == @back
+    if @front.nil? || @front == @back
+      return true
+    else
+      return false
+    end
   end
 
   def to_s
