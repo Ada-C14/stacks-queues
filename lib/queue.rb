@@ -52,7 +52,8 @@ class Queue
   end
 
   def empty?
-    return @front == -1 ? 0 : @back - @front + 1
+    return @front == -1 || @front == @back
+  
   end
 
   def to_s
