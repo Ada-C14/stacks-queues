@@ -1,17 +1,18 @@
 require_relative './stack.rb'
 
 # Time Complexity: O(n*m)
-# Space Complexity: O(m), but also potentially O(1)
+# Space Complexity: O(m)
 def balanced(string)
   # assumes these are only valid chars
   hash_table = {"}" => "{", "]" => "[", ")" => "("}  # space: O(m)? maybe O(1) bc size of this doesnt grow with input?
   stack = Stack.new
 
-  string.each_char do |char|                    # time: O(n)
-    if hash_table.has_value?(char)              # time: O(m)?
+  string.each_char do |char|                            # time: O(n), space: o(m)
+    # assumes will only ever get valid chars
+    if !hash_table[char]
       stack.push(char)
     else
-      return false if stack.pop != hash_table[char]    # time: O(1)
+      return false if stack.pop != hash_table[char]     # time: O(1)
     end
   end
 
@@ -20,7 +21,7 @@ end
 
 
 # Time Complexity: O(n)
-# Space Complexity: O(m), but also potentially O(1)
+# Space Complexity: O(m) - chris says o(n)
 def evaluate_postfix(postfix_expression)
   # assumes these are only valid operations
   operations = {"*" => true, "+" => true, "/" => true, "-" => true}    # space: O(m), maybe O(1) bc size of this doesnt grow with input?
