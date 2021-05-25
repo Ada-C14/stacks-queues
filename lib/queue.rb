@@ -11,8 +11,8 @@ class Queue
 
   def enqueue(element)
 
-    if (@front == 0 && @rear == @size - 1) 
-    raise "queue is full"
+    if ((@front == 0 && @rear == @size - 1)  ||  (@rear == @front && @front != -1) 
+      raise "queue is full"
     elsif (@front == -1)
       @front = @rear = 0
       @queue[@rear] = element
