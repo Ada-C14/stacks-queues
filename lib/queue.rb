@@ -61,7 +61,7 @@ class Queue
     index = @front
     while index <= @rear 
       list.push(@queue[index])
-      index += 1
+      index = (index + 1) % @store.length
     end
 
     return list.to_s
