@@ -28,7 +28,7 @@ Using a circular buffer with an internal array starting at 20 elements, implemen
 - `dequeue` - removes and returns a value from the front of the queue
 - `empty?` returns true if the queue is empty and false otherwise
 
-## Wave 3
+## Wave 3 - Optional
 
 Complete the methods in `lib/problems.rb` including:
 
