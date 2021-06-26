@@ -51,10 +51,22 @@ class Queue
   end
 
   def empty?
-    return @store.empty?
+    return @front == @back
   end
 
   def to_s
-    return @store.to_s
+    list = Array.new
+
+    @store[@front...MAX_SIZE].each do |item|
+      list.push(item) if item
+    end
+
+    if @back < @front # the queue has wrapped around
+      @store[0..@back].each do |item|
+        list.push(item) if item
+      end
+    end
+
+    return list.to_s
   end
 end
