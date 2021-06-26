@@ -1,28 +1,57 @@
 class Queue
+  MAX_SIZE = 20
 
   def initialize
     # @store = ...
-    raise NotImplementedError, "Not yet implemented"
+    @store = Array.new
+    @front = @back = -1
   end
 
   def enqueue(element)
-    raise NotImplementedError, "Not yet implemented"
+    if (@front == 0 && @back == MAX_SIZE - 1) || (@back == (@front -1) % MAX_SIZE - 1)
+      raise Exception.new("Queue is full.")
+    elsif @store.empty? 
+      @front = 0
+      @back = 0
+    elsif @back == (MAX_SIZE - 1) && @front != 0
+      @back = 0
+    else 
+      @back += 1
+    end
+
+    @store[@back] = element # in any non exception case, add element to queue
   end
 
   def dequeue
-    raise NotImplementedError, "Not yet implemented"
+    # raise StandardError.new if @front == @back
+
+    raise Exception.new("Queue is empty") if @store.empty?
+
+    num_to_dequeue = @store[@front] # save the num to dequeue
+    @store[@front] = nil # overwrite element to delete
+
+    if @front == @back # queue is now empty
+      @front = @back = -1
+    elsif @front + 1 == MAX_SIZE
+      @front = 0
+    else # otherwise, add to front
+      @front += 1
+    end
+
+    return num_to_dequeue
   end
 
   def front
-    raise NotImplementedError, "Not yet implemented"
+    return @store[@front]
   end
 
   def size
-    raise NotImplementedError, "Not yet implemented"
+    return 0 if @front == -1
+    return @front < @rear ? @rear - @front + 1 : MAX_SIZE - @front + @rear
   end
 
   def empty?
-    raise NotImplementedError, "Not yet implemented"
+    return @store.empty?
   end
 
   def to_s
