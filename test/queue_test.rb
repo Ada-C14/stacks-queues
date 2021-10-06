@@ -25,6 +25,15 @@ describe "Test Queue Implementation" do
     expect(q.to_s).must_equal "[10, 20, 30]"
   end
 
+  it "returns the correct size of the queue" do
+
+    q = Queue.new
+    q.enqueue(1)
+    q.enqueue(2)
+    q.enqueue(3)
+    expect(q.size).must_equal 3
+  end
+
   it "starts the Queue empty" do
     
     q = Queue.new

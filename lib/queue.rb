@@ -3,18 +3,19 @@ class Queue
 
   def initialize
     @store = Array.new(Array_Length)
-    @front = @back = 0
+    @front = @back = 0 # back is the LAST EMPTY Space at the end
   end
 
   def enqueue(element)
     if @front.nil? 
       @front = @back = 0
-    elsif (@front - @back == 1) || (@back - @front == Array_Length - 1)
+    elsif @front - @back == 1 || (@back - @front == Array_Length - 1) # edge case were @back and @front are in different sides of the circle
       raise ArgumentError, 'Queue is full' 
     end
 
     @store[@back] = element
-    @back = (@back + 1) % Array_Length
+    @back = (@back + 1) % Array_Length # to update the back
+
   end
 
   def dequeue
@@ -32,11 +33,11 @@ class Queue
   end
 
   def size
-    return 0 if @front == -1
+    return 0 if @front.nil?
     if @front < @back
-      @back - @front + 1
+      @back - @front
     else
-      Array_Length - @front + @back
+      Array_Length - (@front + @back)
     end
   end
 
@@ -53,7 +54,8 @@ class Queue
     if @back >= @front 
       results = @store[@front...@back]
     else
-      results = @store[@front...Array_Length] + (@store[0...@back])
+      # from beginig to end of the list + begining to @back
+      results = @store[@front...Array_Length] + (@store[0...@back]) 
     end
     return results.to_s
   end

@@ -1,6 +1,6 @@
 class Stack
   def initialize
-    @store = LinkedList.new()
+    @store = LinkedList.new
   end
 
   def push(element)
@@ -20,4 +20,5 @@ class Stack
   def to_s
     return @store.to_s
   end
+  
 end
