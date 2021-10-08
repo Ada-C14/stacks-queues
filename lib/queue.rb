@@ -59,5 +59,6 @@ class Queue
     end
     return results.to_s
   end
-  
+
+
 end
