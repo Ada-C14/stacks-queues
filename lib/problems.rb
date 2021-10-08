@@ -3,32 +3,29 @@ require_relative './stack.rb'
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 def balanced(string)
-  if string.empty?
-    true
-  end
+  open = {
+    "(" => true,
+    "{" => true,
+    "[" => true
+  }
 
-  brackets = Stack.new
+  close = {
+    ")" => "(",
+    "}" => "{",
+    "]" => "["
+  }
+
+  results = Stack.new
 
   string.each_char do |char|
-    if char == "{" || char == "(" || char == "["
-      brackets.push(char)
-    elsif char == "}" || char == ")" || char == "]"
-      if char == "}" && brackets[-1] == "{"
-        brackets.pop
-      elsif char == ")" && brackets[-1] == "("
-        brackets.pop
-      elsif char == "]" && brackets[-1] == "["
-        brackets.pop
-      else
-        false
-      end
+    if open[char]
+      results.push(char)
+    elsif close[char]
+      return false if results.pop != close[char]
     end
   end
-  if brackets.empty?
-    true
-  else
-    false
-  end
+
+  results.empty?
 end
 
 # Time Complexity: ?
