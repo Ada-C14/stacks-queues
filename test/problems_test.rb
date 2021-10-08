@@ -1,4 +1,5 @@
 require_relative 'test_helper'
+require_relative '../lib/problems'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
